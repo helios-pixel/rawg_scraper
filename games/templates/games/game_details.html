@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ game.title }}</title>
+</head>
+<body>
+    <h1>{{ game.title }}</h1>
+    <p>{{ game.description }}</p>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'game_detail' game.rawg_id %}">
+            {% csrf_token %}
+            <button type="submit">Add to Library</button>
+        </form>
+    {% endif %}
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <p>{{ review.review }}</p>
+                <p>Rating: {{ review.rating }}</p>
+                <p>by {{ review.user.username }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+        <a href="{% url 'add_review' game.rawg_id %}">Add a Review</a>
+    {% endif %}
+</body>
+</html>

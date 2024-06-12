@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Review for {{ game.title }}</title>
+</head>
+<body>
+    <h1>Add Review for {{ game.title }}</h1>
+    <form method="post" action="{% url 'add_review' game.rawg_id %}">
+        {% csrf_token %}
+        <textarea name="review" placeholder="Your review"></textarea><br>
+        <input type="number" name="rating" min="1" max="10" placeholder="Rating (1-10)"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Games</title>
+</head>
+<body>
+    <h1>Search for Games</h1>
+    <form method="get" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="Search for a game...">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for game in results %}
+            <li>
+                <a href="{% url 'game_detail' game.id %}">{{ game.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
